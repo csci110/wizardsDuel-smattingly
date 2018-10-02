@@ -1,6 +1,6 @@
 // topics: if
 
-import { game, Sprite } from "../sgc/sgc.js";
+import { game, Sprite } from "./sgc/sgc.js";
 
 game.setBackground("floor.png");
 
@@ -129,7 +129,9 @@ class Spell extends Sprite {
 
     handleBoundaryContact() {
         // Destroy spell when it leaves display area
-        game.removeSprite(this);
+        if (this.x < 0 || this.x > game.displayWidth) {
+            game.removeSprite(this);
+        }
     }
 
     handleCollision(otherSprite) {
